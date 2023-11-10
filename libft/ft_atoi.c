@@ -1,27 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_atoi.c                                         :+:      :+:    :+:    */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oshklyar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/08 14:23:22 by oshklyar          #+#    #+#             */
-/*   Updated: 2023/11/08 14:33:13 by oshklyar         ###   ########.fr       */
+/*   Created: 2023/11/08 09:47:56 by oshklyar          #+#    #+#             */
+/*   Updated: 2023/11/08 13:38:52 by oshklyar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-char	*ft_strrchr(const char *s, int c)
+int	ft_atoi(const char *str)
 {
 	int	i;
+	int	res;
+	int	sign;
 
-	i = ft_strlen(s);
-	while (i >= 0)
+	i = 0;
+	sign = 1;
+	res = 0;
+	while (str[i] == ' ' || str[i] == '\n' || str[i] == '\t' \
+		|| str[i] == '\v' || str[i] == '\f' || str[i] == '\r')
+		i++;
+	if (str[i] == '-' || str[i] == '+')
 	{
-		if (s[i] == (char) c)
-			return ((char *)s + i);
-		i --;
+		if (str[i] == '-')
+			sign *= -1;
+		i++;
 	}
-	return (NULL);
+	while (str[i] >= 48 && str[i] <= 57)
+	{
+		res = res * 10 + (str[i] - 48);
+		i ++;
+	}
+	return (res * sign);
 }
