@@ -6,7 +6,7 @@
 #    By: oshklyar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/08 11:51:44 by oshklyar          #+#    #+#              #
-#    Updated: 2023/11/13 13:04:52 by oshklyar         ###   ########.fr        #
+#    Updated: 2023/11/13 14:20:49 by oshklyar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,13 +23,16 @@ ft_strlcpy.c ft_strlen.c ft_tolower.c ft_toupper.c\
 ft_strrchr.c ft_strncmp.c ft_memchr.c ft_atoi.c\
 ft_strnstr.c ft_memcmp.c ft_strdup.c ft_calloc.c\
 ft_substr.c ft_strjoin.c ft_strtrim.c ft_split.c\
-ft_itoa.c
+ft_itoa.c ft_strmapi.c ft_putchar_fd.c ft_putstr_fd.c\
+ft_putendl_fd.c ft_striteri.c
 
 OBJ = $(SRC:.c=.o)
 
 $(NAME):$(OBJ)
 	ar rcs $(NAME) $(OBJ)
-
+so:
+	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRC)
+	gcc -nostartfiles -shared -o libft.so $(OBJ)
 clean :
 	rm -f $(OBJ)
 

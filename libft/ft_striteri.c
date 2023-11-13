@@ -6,21 +6,23 @@
 /*   By: oshklyar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 13:22:31 by oshklyar          #+#    #+#             */
-/*   Updated: 2023/11/13 13:28:38 by oshklyar         ###   ########.fr       */
+/*   Updated: 2023/11/13 14:24:19 by oshklyar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_striteri(char *s, void(*f)(unsigned int, char*))
-{
-	int 	i;
+#include "libft.h"
 
-	i = 0
-	if (!s || !f)
-		return (NULL);
-	while (!s)
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
+{
+	int	i;
+
+	i = 0;
+	if (!s)
+		return ;
+	while (s[i] != '\0')
 	{
-		(*f)(i ,s[i])
-		i++;	
+		f(i, &s[i]);
+		i++;
 	}
 	return ;
 }
