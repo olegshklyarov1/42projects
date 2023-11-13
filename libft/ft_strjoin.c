@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                         :+:      :+:    :+:  */
+/*   ft_strjoin.c                                         :+:      :+:    :+: */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oshklyar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,19 +12,31 @@
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s1)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char		*str;
-	char		*p;
-	int			len;
+	int		i;
+	int		len_1;
+	int		len_2;
+	char	*str;
 
-	len = 0;
-	while (s1[len])
-		len++;
-	str = malloc(len + 1);
-	p = str;
-	while (*s1)
-		*p++ = *s1++;
-	*p = '\0';
-	return (p);
+	if (s1 && s2)
+	{
+		len_1 = ft_strlen(s1);
+		len_2 = ft_strlen(s2);
+		str = (char *)malloc(sizeof (char) * (len_1 + len_2 + 1));
+		if (str == NULL)
+			return (NULL);
+		i = -1;
+		while (s1[++i])
+			str[i] = s1[i];
+		i = -1;
+		while (s2[++i])
+		{
+			str[len_1] = s2[i];
+			len_1++;
+		}
+		str[len_1] = '\0';
+		return (str);
+	}
+	return (NULL);
 }

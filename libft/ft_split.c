@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                         :+:      :+:    :+:  */
+/*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oshklyar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,19 +12,30 @@
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s1)
+int	ft_isspace(char c)
 {
-	char		*str;
-	char		*p;
-	int			len;
+	if (c == '\t' || c == ' ' || c == '\n' || c == '\v' \
+			|| c == '\f' || c == '\r')
+		return (1);
+	else
+		return (0);
+}
 
-	len = 0;
-	while (s1[len])
-		len++;
-	str = malloc(len + 1);
-	p = str;
-	while (*s1)
-		*p++ = *s1++;
-	*p = '\0';
-	return (p);
+char	**ft_split(char const *s, char c)
+{
+	int	i;
+	int	count;
+
+	i = 0;
+	while(s[i])
+	{
+		if (ft_isspace(s[i]))
+			i++;
+		else
+		{
+			count++;
+			while (s[i] && ft_isspace(s[i]) == 0)
+				i++;
+		}
+	}
 }
