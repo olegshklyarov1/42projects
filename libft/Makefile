@@ -6,7 +6,7 @@
 #    By: oshklyar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/08 11:51:44 by oshklyar          #+#    #+#              #
-#    Updated: 2023/11/08 14:49:58 by oshklyar         ###   ########.fr        #
+#    Updated: 2023/11/13 12:50:34 by oshklyar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ ft_memmove.c ft_memset.c ft_strchr.c ft_strlcat.c\
 ft_strlcpy.c ft_strlen.c ft_tolower.c ft_toupper.c\
 ft_strrchr.c ft_strncmp.c ft_memchr.c ft_atoi.c\
 ft_strnstr.c ft_memcmp.c ft_strdup.c ft_calloc.c\
-ft_substr.c ft_strjoin.c ft_strtrim.c
+ft_substr.c ft_strjoin.c ft_strtrim.c ft_split.c\
 
 OBJ = $(SRC:.c=.o)
 
