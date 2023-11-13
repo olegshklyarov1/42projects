@@ -6,7 +6,7 @@
 /*   By: oshklyar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:14:49 by oshklyar          #+#    #+#             */
-/*   Updated: 2023/11/08 15:26:58 by oshklyar         ###   ########.fr       */
+/*   Updated: 2023/11/13 10:36:26 by oshklyar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef LIBFT_H
@@ -14,6 +14,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <limits.h>
 
 int		ft_atoi(const char *str);
 

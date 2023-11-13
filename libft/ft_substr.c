@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                         :+:      :+:    :+:  */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oshklyar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 09:47:56 by oshklyar          #+#    #+#             */
-/*   Updated: 2023/11/08 13:38:52 by oshklyar         ###   ########.fr       */
+/*   Updated: 2023/11/13 11:09:09 by oshklyar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,25 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	size_t	j;
 	char	*str;
 
-	str = (char *)malloc(sizeof(*s) * (len - 1));
-	if (!str)
+	if (!s)
 		return (NULL);
-	i = 0;
-	j = 0;
-	while (s[i])
+	if (ft_strlen(s) < start)
 	{
-		if (i >= start && j < len)
-		{
-			str[j] = s[i];
-			j++;
-		}
-		i++;
+		str = (char *)malloc(sizeof(char) * 1);
+		if (!str)
+			return (NULL);
+		str[0] = '\0';
+		return (str);
 	}
-	str[j] = 0;
+	if (len + start > ft_strlen(s))
+		len = ft_strlen(s) - start;
+	str = (char *)malloc(sizeof(*s) * (len + 1));
+	if (str == NULL)
+		return (NULL);
+	i = start;
+	j = 0;
+	while (s[i] && j < len)
+		str[j++] = s[i++];
+	str[j] = '\0';
 	return (str);
 }

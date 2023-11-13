@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                         :+:      :+:    :+: */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oshklyar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 09:47:56 by oshklyar          #+#    #+#             */
-/*   Updated: 2023/11/08 13:38:52 by oshklyar         ###   ########.fr       */
+/*   Updated: 2023/11/13 11:10:45 by oshklyar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	size_t	i;
 	size_t	j;
 
+	if ((!haystack || !needle) && len == 0)
+		return (0);
 	i = 0;
 	if (*needle == '\0' || needle == NULL)
 		return ((char *)haystack);
