@@ -6,7 +6,7 @@
 /*   By: oshklyar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:14:49 by oshklyar          #+#    #+#             */
-/*   Updated: 2023/11/13 16:15:42 by oshklyar         ###   ########.fr       */
+/*   Updated: 2023/11/13 16:22:11 by oshklyar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef LIBFT_H
@@ -85,6 +85,6 @@ int		ft_tolower(int c);
 
 int		ft_toupper(int c);
 
-void		ft_striteri(char *s, void (*f)(unsigned int, char *));
+void	ft_striteri(char *s, void (*f)(unsigned int, char *));
 
 #endif
