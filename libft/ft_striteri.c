@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oshklyar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/13 13:12:01 by oshklyar          #+#    #+#             */
-/*   Updated: 2023/11/13 13:39:05 by oshklyar         ###   ########.fr       */
+/*   Created: 2023/11/13 13:22:31 by oshklyar          #+#    #+#             */
+/*   Updated: 2023/11/13 13:28:38 by oshklyar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char*))
+void	ft_striteri(char *s, void(*f)(unsigned int, char*))
 {
-	int		i;
-	char	*dst;
+	int 	i;
 
-	i = 0;
+	i = 0
 	if (!s || !f)
 		return (NULL);
-	dst = malloc(sizeof(char) * ft_strlen(s) + 1);
-	if (!dst)
-		return (dst);
-	while (s[i])
+	while (!s)
 	{
-		dst[i] = f(i, s[i]);
-		i++;
+		(*f)(i ,s[i])
+		i++;	
 	}
-	dst[i] = '\0';
-	return (dst);
+	return ;
 }
