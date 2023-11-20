@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oshklyar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/20 12:18:02 by oshklyar          #+#    #+#             */
-/*   Updated: 2023/11/20 16:39:54 by oshklyar         ###   ########.fr       */
+/*   Created: 2023/11/20 16:40:16 by oshklyar          #+#    #+#             */
+/*   Updated: 2023/11/20 16:45:11 by oshklyar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
+#include "ft_printf.h"
+#include <stdlib.h>
+#include "libft.h"
 
-int	ft_printf(const char *format, ...)
-{
-}
+
