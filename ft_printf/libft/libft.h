@@ -15,10 +15,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
-# include <stdarg.h>
 # include <stdio.h>
-
-int	ft_printf(const char *, ...);
 
 int		ft_atoi(const char *str);
 

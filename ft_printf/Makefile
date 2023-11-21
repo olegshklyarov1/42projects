@@ -16,7 +16,11 @@ CFLAGS = -Wall -Werror -Wextra
 
 NAME = libftprintf.a
 
-SRC = ft_printf.c
+SRC = ft_printf.c \
+	print_string.c	\
+	print_int.c \
+	print_char.c \
+	print_pointer.c \
 
 OBJ = $(SRC:.c=.o)
 
