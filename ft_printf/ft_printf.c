@@ -6,7 +6,7 @@
 /*   By: oshklyar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:18:02 by oshklyar          #+#    #+#             */
-/*   Updated: 2023/11/20 16:39:54 by oshklyar         ###   ########.fr       */
+/*   Updated: 2023/11/22 13:34:49 by oshklyar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ static int	check_type(char input, va_list args)
 		i += print_int(va_arg(args, int));
 	else if (input == 'i')
 		i += print_int(va_arg(args, int));
-	/*else if (*input == 'u')
+	else if (input == 'u')
 		i += print_unsigned(va_arg(args, unsigned int));
-	else if (*input == 'x')
+	else if (input == 'x')
 		i += print_hex(va_arg(args, unsigned int), 87);
-	else if (*input == 'X')
-		i += print_hex(va_arg(args, unsigned int), 55);*/
+	else if (input == 'X')
+		i += print_hex(va_arg(args, unsigned int), 55);
 	return (i);
 }
 
@@ -40,8 +40,8 @@ int	ft_printf(const char *input, ...)
 {
 	va_list		args;
 	unsigned int	i;
-	int			len;
-	
+	int		len;
+
 	if (!input)
 		return (0);
 	i = 0;
@@ -63,3 +63,4 @@ int	ft_printf(const char *input, ...)
 	va_end(args);
 	return (len);
 }
+
