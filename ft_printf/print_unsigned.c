@@ -12,4 +12,17 @@
 
 #include "ft_printf.h"
 
-int	print_unsigned(unsigned int nb);
+int print_unsigned(unsigned int nb)
+{
+    int len;
+
+    len = 0;
+    if (nb >= 10)
+    {
+        len += print_unsigned(nb / 10);
+        len += print_unsigned(nb % 10);
+    }
+    else
+        len += print_char(nb + '0');
+    return (len);
+}
