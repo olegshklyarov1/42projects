@@ -12,22 +12,24 @@
 
 #include "ft_printf.h"
 
-int print_hex(unsigned int value)
+int print_hex(long n, int base)
 {
-    int len;
+    int count;
+    char *symbols;
 
-    len = 0;
-    if (value >= 16)
+    symbols = "0123456789abcdef";
+    if (n < 0)
     {
-        len += print_hex(value / 16);
-        len += print_hex(value % 16);
+        write(1, "-", 1);
+        return (print_hex(-n, base) + 1);
+    }
+    else if (n < base)
+    {
+        return (print_char(symbols[n]));
     }
     else
     {
-        if (value < 10)
-            len += print_char(value + '0');
-        else
-            len += print_char(value + 'a' - 10);
+        count = print_hex(n / base, base);
+        return (count + print_hex(n % base, base));
     }
-    return (len);
 }

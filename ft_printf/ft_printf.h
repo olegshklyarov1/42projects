@@ -23,6 +23,6 @@ int print_unsigned(unsigned int nb);
 int print_string(char *s);
 int print_int(int n);
 int print_char(char c);
-int print_hex(unsigned int value);
+int print_hex(long n, int base);
 
 #endif
