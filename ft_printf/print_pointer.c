@@ -36,7 +36,7 @@ static void	put_ptr(unsigned long long addr)
 	write(1, &digits[addr % 16], 1);
 }
 
-int 	print_pointer(void *addr)
+int	print_pointer(void *addr)
 {
 	if (addr == NULL)
 		return (write(1, "(nil)", 5));

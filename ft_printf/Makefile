@@ -21,6 +21,8 @@ SRC = ft_printf.c \
 	print_int.c \
 	print_char.c \
 	print_pointer.c \
+	print_hex.c \
+	print_unsigned.c \
 
 OBJ = $(SRC:.c=.o)
 

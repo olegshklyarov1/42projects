@@ -12,9 +12,9 @@
 
 #include "ft_printf.h"
 
-static int check_type(char input, va_list args)
+static int	check_type(char input, va_list args)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (input == 'c')
@@ -30,17 +30,19 @@ static int check_type(char input, va_list args)
 	else if (input == 'u')
 		i += print_unsigned(va_arg(args, unsigned int));
 	else if (input == 'x')
-		i += print_hex((long)va_arg(args, unsigned int), 87);
+		i += print_hex((long)va_arg(args, unsigned int), 16);
 	else if (input == 'X')
-		i += print_hex(va_arg(args, unsigned int), 55);
+		i += print_hex_upper((long)va_arg(args, unsigned int), 16);
+	else if (input == '%')
+		i += print_char('%');
 	return (i);
 }
 
-int ft_printf(const char *input, ...)
+int	ft_printf(const char *input, ...)
 {
-	va_list args;
-	unsigned int i;
-	int len;
+	va_list			args;
+	unsigned int	i;
+	int				len;
 
 	if (!input)
 		return (0);
@@ -53,8 +55,6 @@ int ft_printf(const char *input, ...)
 		{
 			i++;
 			len += check_type(input[i], args);
-			if (input[i] == '%')
-				i += print_char('%');
 		}
 		else
 			len += write(1, &input[i], 1);

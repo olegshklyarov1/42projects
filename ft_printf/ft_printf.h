@@ -11,18 +11,19 @@
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
-#define FT_PRINTF_H
+# define FT_PRINTF_H
 
-#include <stdarg.h>
-#include <stdint.h>
-#include "./libft/libft.h"
+# include <stdarg.h>
+# include <stdint.h>
+# include "./libft/libft.h"
 
-int ft_printf(const char *input, ...);
-int print_pointer(void *addr);
-int print_unsigned(unsigned int nb);
-int print_string(char *s);
-int print_int(int n);
-int print_char(char c);
-int print_hex(long n, int base);
+int	ft_printf(const char *input, ...);
+int	print_pointer(void *addr);
+int	print_unsigned(unsigned int nb);
+int	print_string(char *s);
+int	print_int(int n);
+int	print_char(char c);
+int	print_hex(long long int n, int base);
+int	print_hex_upper(long long int n, int base);
 
 #endif
