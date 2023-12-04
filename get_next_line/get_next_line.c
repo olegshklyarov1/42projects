@@ -6,8 +6,12 @@
 /*   By: oshklyar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:33:21 by oshklyar          #+#    #+#             */
-/*   Updated: 2023/12/04 13:34:54 by oshklyar         ###   ########.fr       */
+/*   Updated: 2023/12/04 14:54:41 by oshklyar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "get_next_line.h"
 
+char    get_next_line(int fd)
+{ 
+}

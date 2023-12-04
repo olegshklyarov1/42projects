@@ -13,10 +13,15 @@
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
+#ifndef BUFF_SIZE
+# define BUFF_SIZE 32
+#endif
+
 # include <stdio.h>
+# include <limits.h>
 
 size_t	ft_strlen(const char *str);
-char	*ft_strchr(const char *s, int c);
+char	*ft_strchr(const char *s, char c);
 char	*ft_strjoin(char const *s1, char const *s2);
 void	*ft_calloc(size_t count, size_t size);
 void	ft_bzero(void *s, size_t n);
