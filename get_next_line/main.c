@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oshklyar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/04 11:29:54 by oshklyar          #+#    #+#             */
-/*   Updated: 2023/12/04 15:46:11 by oshklyar         ###   ########.fr       */
+/*   Created: 2023/12/04 15:23:12 by oshklyar          #+#    #+#             */
+/*   Updated: 2023/12/04 15:35:01 by oshklyar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "get_next_line.h"
+#include <unistd.h>
+#include <ctype.h>
+#include <stdarg.h>
+#include <stdlib.h>
 
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 10
-#endif
-
-# include <stdio.h>
-# include <limits.h>
-
-typedef struct s_list
+int	main(void)
 {
-	char	*str_buf;
-	struct	s_list	*next;
-}	t_list;
+	int	fd;
+	char	buf[256];
+	int	chars_read;
 
-
-char	get_next_line(int fd);
-
-#endif
+	fd = open("file.txt", O_RDONLY);
+	while((chars_read = read(fd, buf, 5)))
+	{
+		buf[chars_read] = '\0';
+		printf("buf-> %s\n", buf);
+	}
+}

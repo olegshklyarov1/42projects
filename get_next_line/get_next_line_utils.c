@@ -6,91 +6,60 @@
 /*   By: oshklyar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 11:52:24 by oshklyar          #+#    #+#             */
-/*   Updated: 2023/12/04 12:00:58 by oshklyar         ###   ########.fr       */
+/*   Updated: 2023/12/04 16:31:45 by oshklyar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *s)
+int	len_to_newline(t_list *list)
 {
-	size_t	i;
+	int	i;
+	int	len;
 
-	while(s[i])
-		i++;
-	return(i);
-}
-
-char	*ft_strchr(const char *s, char c)
-{
-	while (*s)
+	if (NULL == list)
+		return (0);
+	len = 0;
+	while (list)
 	{
-		if (*s == (unsigned char)c)
-			return ((char *)s);
-		s++;
-	}
-	if (c == 0)
-		return ((char *)s);
-	return (NULL);
-}
-
-char	*ft_strjoin(char const *s1, char const *s2)
-{
-	int		i;
-	int		len_1;
-	int		len_2;
-	char	*str;
-
-	if (s1 && s2)
-	{
-		len_1 = ft_strlen(s1);
-		len_2 = ft_strlen(s2);
-		str = (char *)malloc(sizeof (char) * (len_1 + len_2 + 1));
-		if (str == NULL)
-			return (NULL);
-		i = -1;
-		while (s1[++i])
-			str[i] = s1[i];
-		i = -1;
-		while (s2[++i])
+		i = 0;
+		while (list->str_buf[i])
 		{
-			str[len_1] = s2[i];
-			len_1++;
+			if (list->str_buf[i] == '\n')
+			{
+				++len;
+				return (len);
+			}
+			++i;
+			++len;
 		}
-		str[len_1] = '\0';
-		return (str);
+		list = list->next;
 	}
-	return (NULL);
+	return (len);
 }
 
-void	*ft_calloc(size_t count, size_t size)
+void	copy_str(t_list *list, char *str)
 {
-	void	*p;
-	size_t	total;
+	int	i;
+	int	k;
 
-	total = count * size;
-	if (!(total))
-		return (malloc(1));
-	if (count > INT_MAX || size > INT_MAX)
-		return (NULL);
-	if (!count || !size)
-		return (NULL);
-	p = (void *)malloc(total);
-	if (!p)
-		return (NULL);
-	ft_memset(p, 0, total);
-	return (p);
-}
-
-void	ft_bzero(void *s, size_t n)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < n)
+	if (NULL == list)
+		return ;
+	k = 0;
+	while (list)
 	{
-		*(char *)(s + i) = 0;
-		i++;
+		i = 0;
+		while (list->str_buf[i])
+		{
+			if (list->str_buf[i] == '\n')
+			{
+				str[k++] = '\n';
+				str[k] = '\0';
+				return ;
+			}
+			str[k++] = list->str_buf[i++];
+		}
+		list = list->next;
+		str[k] = '\0';
 	}
 }
-
