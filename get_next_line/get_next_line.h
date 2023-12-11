@@ -23,21 +23,15 @@
 #include <stdlib.h>
 #include <fcntl.h>
 
-typedef struct s_list
-{
-	char	*str;
-	struct s_list	*next;
-}				t_list;
+# include <stdlib.h>
+# include <unistd.h>
 
-char *get_next_line(int fd);
-int found_new_line(t_list *stash);
-t_list *ft_lst_get_last(t_list *stash);
-void read_and_stash(int fd, t_list **stash);
-void add_to_stash(t_list **stash, char *buf, int readed);
-void extract_line(t_list *stash, char **line);
-void generate_line(char **line, t_list *stash);
-void free_stash(t_list *stash);
-void clean_stash(t_list **stash);
-int ft_strlen(const char *str);
+size_t	ft_strlen(char *str);
+char	*get_next_line(int fd);
+char	*ft_readed_line(char *src);
+char	*ft_strchr(char *s, int c);
+char	*ft_move_start(char *start);
+char	*ft_strjoin(char *start, char *buff);
+char	*ft_join(char *dest, char *s1, char *s2);
 
 #endif

@@ -12,79 +12,71 @@
 
 #include "get_next_line.h"
 
-int 	found_new_line(t_list *stash)
+size_t	ft_strlen(char *str)
 {
-	int 	i;
-	t_list	*current;
-
-	if (!stash)
-		return (0);
-	current = ft_lst_get_last(stash);
-	i = 0;
-	while (current->str[i])
-	{
-		if (current->str[i] == '\n')
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-t_list	*ft_lst_get_last(t_list *stash)
-{
-	t_list *current;
-
-	current = stash;
-	while (current && current->next)
-		current = current->next;
-	return (current);
-}
-
-void	generate_line(char **line, t_list *stash)
-{
-	int	i;
-	int	len;
-
-	len = 0;
-	while (stash)
-	{
-		i = 0;
-		while (stash->str[i])
-		{
-			if (stash->str[i] == '\n')
-			{
-				len++;
-				break;
-			}
-			len++;
-			i++;
-		}
-		stash = stash->next;
-	}
-	*line = malloc(sizeof(char) * (len + 1));
-}
-
-void	free_stash(t_list *stash)
-{
-	t_list *current;
-	t_list *next;
-
-	current = stash;
-	while (current)
-	{
-		free(current->str);
-		next = current->next;
-		free(current);
-		current = next;
-	}
-}
-
-int	ft_strlen(const char *str)
-{
-	int i;
+	size_t i;
 
 	i = 0;
 	while (str[i])
 		i++;
 	return (i);
+}
+
+char	*ft_strchr(char *s, int c)
+{
+	size_t i;
+
+	if (!s)
+		return (NULL);
+	if (c == '\0')
+	{
+		i = ft_strlen(s);
+		return (&s[i]);
+	}
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == c)
+			return (&s[i]);
+		i++;
+	}
+	return (NULL);
+}
+
+char	*ft_strjoin(char *start, char *buff)
+{
+	char	*ptr;
+
+	if (!start)
+	{
+		start = (char*)malloc(1 * sizeof(char));
+		start[0] = '\0';
+	}
+	if (!start || !buff)
+		return (NULL);
+	ptr = (char*)malloc(1 + ft_strlen(start) + ft_strlen(buff) * sizeof(char));
+	if (!ptr)
+		return (NULL);
+	ptr = ft_join(ptr, start, buff);
+	free(start);
+	return (ptr);
+}
+
+char	*ft_join(char *dest, char *s1, char *s2)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	j = 0;
+	while (s1[j] && s1)
+		dest[i++] = s1[j++];
+	j = 0;
+	while (s2[j] && s2)
+	{
+		dest[i + j] = s2[j];
+		j++;
+	}
+	dest[i + j] = '\0';
+	return (dest);
 }
