@@ -12,54 +12,79 @@
 
 #include "get_next_line.h"
 
-int	len_to_newline(t_list *list)
+int 	found_new_line(t_list *stash)
+{
+	int 	i;
+	t_list	*current;
+
+	if (!stash)
+		return (0);
+	current = ft_lst_get_last(stash);
+	i = 0;
+	while (current->str[i])
+	{
+		if (current->str[i] == '\n')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+t_list	*ft_lst_get_last(t_list *stash)
+{
+	t_list *current;
+
+	current = stash;
+	while (current && current->next)
+		current = current->next;
+	return (current);
+}
+
+void	generate_line(char **line, t_list *stash)
 {
 	int	i;
 	int	len;
 
-	if (NULL == list)
-		return (0);
 	len = 0;
-	while (list)
+	while (stash)
 	{
 		i = 0;
-		while (list->str_buf[i])
+		while (stash->str[i])
 		{
-			if (list->str_buf[i] == '\n')
+			if (stash->str[i] == '\n')
 			{
-				++len;
-				return (len);
+				len++;
+				break;
 			}
-			++i;
-			++len;
+			len++;
+			i++;
 		}
-		list = list->next;
+		stash = stash->next;
 	}
-	return (len);
+	*line = malloc(sizeof(char) * (len + 1));
 }
 
-void	copy_str(t_list *list, char *str)
+void	free_stash(t_list *stash)
 {
-	int	i;
-	int	k;
+	t_list *current;
+	t_list *next;
 
-	if (NULL == list)
-		return ;
-	k = 0;
-	while (list)
+	current = stash;
+	while (current)
 	{
-		i = 0;
-		while (list->str_buf[i])
-		{
-			if (list->str_buf[i] == '\n')
-			{
-				str[k++] = '\n';
-				str[k] = '\0';
-				return ;
-			}
-			str[k++] = list->str_buf[i++];
-		}
-		list = list->next;
-		str[k] = '\0';
+		free(current->str);
+		next = current->next;
+		free(current);
+		current = next;
 	}
+}
+
+int	ft_strlen(const char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }

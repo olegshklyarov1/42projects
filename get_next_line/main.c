@@ -11,21 +11,20 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <unistd.h>
-#include <ctype.h>
-#include <stdarg.h>
-#include <stdlib.h>
 
-int	main(void)
+int main(void)
 {
-	int	fd;
-	char	buf[256];
-	int	chars_read;
+	int fd;
+	char *line;
 
-	fd = open("file.txt", O_RDONLY);
-	while((chars_read = read(fd, buf, 5)))
+	fd = open("file", O_RDONLY);
+	while (1)
 	{
-		buf[chars_read] = '\0';
-		printf("buf-> %s\n", buf);
+		line = get_next_line(fd);
+		printf("%s\n", line);
+		if (!line)
+			break;
+		free(line);
 	}
+	return (0);
 }
