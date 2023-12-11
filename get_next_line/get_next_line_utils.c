@@ -69,7 +69,7 @@ char	*ft_join(char *dest, char *s1, char *s2)
 
 	i = 0;
 	j = 0;
-	while (s1[j] && s1)
+	while (s1[i] && s1)
 		dest[i++] = s1[i++];
 	while (s2[j] && s2)
 	{
