@@ -12,91 +12,34 @@
 
 #include "get_next_line.h"
 
-char	*ft_readed_line(char *start)
-{
-	int		i;
-	char	*line;
-
-	if(!start || !start[0])
-		return (NULL);
-	i = 0;
-	while (start[i] != '\n' && start[i])
-		i++;
-	if (start[i] == '\n')
-	{
-		i ++;
-	}
-	line = (char*)malloc((i + 1) * sizeof(char));
-	if (!line)
-		return (NULL);
-	i = 0;
-	while (start[i] != '\n' && start[i])
-	{
-		line[i] = start[i];
-		i++;
-	}
-	if (start[i] == '\n')
-	{
-		line[i] = '\n';
-		i++;
-	}
-	line[i] = '\0';
-	return (line);
-}
-
-char	*ft_move_start(char *start)
-{
-	int		i;
-	int		j;
-	char	*ptr;
-
-	while (start[i] != '\n' && start[i])
-		i++;
-	if (!start[i])
-	{
-		free(start);
-		return (NULL);
-	}
-	i += (start[i] == '\n');
-	ptr = (char*)malloc(ft_strlen(start) - i + 1);
-	if (!ptr)
-		return (NULL);
-	j = 0;
-	while (start[i + j])
-	{
-		ptr[j] = start[i + j];
-		j++;
-	}
-	ptr[j] = '\0';
-	free(start);
-	return (ptr);
-}
-
 char	*get_next_line(int fd)
 {
-	char	*tmp;
-	int		fd_read;
-	static char	*start;
+	char	*line;
+	char	*buffer;
+	char	*temp;
+	int		bytes_read;
 
-	if (fd < 0 || BUFFER_SIZE < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	fd_read = 1;
-	tmp = (char*)malloc((BUFFER_SIZE + 1) * sizeof(char));
-	if (!tmp)
+	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
+	if (!buffer)
 		return (NULL);
-	while (!ft_strchr(start, '\n') && fd_read != 0)
+	line = ft_strdup("");
+	bytes_read = read(fd, buffer, BUFFER_SIZE);
+	while (bytes_read > 0)
 	{
-		fd_read = read(fd, tmp, BUFFER_SIZE);
-		if (fd_read == -1)
-		{
-			free(tmp);
-			return (NULL);
-		}
-		tmp[fd_read] = '\0';
-		start = ft_strjoin(start, tmp);
+		buffer[bytes_read] = '\0';
+		temp = ft_strjoin(line, buffer);
+		free(line);
+		line = temp;
+		if (ft_strchr(buffer, '\n'))
+			break;
 	}
-	free(tmp);
-	tmp = ft_readed_line(start);
-	start = ft_move_start(start);
-	return (tmp);
+	free(buffer);
+	if (bytes_read == -1 || (bytes_read == 0 && line[0] == '\0'))
+	{
+		free(line);
+		return (NULL);
+	}
+	return (line);
 }

@@ -18,13 +18,22 @@ int main(void)
 	char *line;
 
 	fd = open("file", O_RDONLY);
-	while (1)
+	if (fd == -1)
 	{
-		line = get_next_line(fd);
-		printf("%s\n", line);
-		if (!line)
-			break;
-		free(line);
+		perror("error opening file");
+		return (1);
 	}
-	return (0);
+	
+    while (1)
+    {
+        line = get_next_line(fd);
+        if (!line)
+            break;
+
+        printf("%s\n", line);
+        free(line);
+    }
+
+    close(fd);
+    return 0;
 }
