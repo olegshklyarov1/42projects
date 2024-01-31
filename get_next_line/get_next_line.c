@@ -19,7 +19,7 @@ char	*get_next_line(int fd)
 	char	*line;
 	char	*buffer;
 	char	*temp;
-	int		bytes_read;
+	int	bytes_read;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
