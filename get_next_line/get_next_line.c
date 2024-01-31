@@ -11,6 +11,8 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdio.h>
+#include <unistd.h>
 
 char	*get_next_line(int fd)
 {
@@ -30,6 +32,11 @@ char	*get_next_line(int fd)
 	{
 		buffer[bytes_read] = '\0';
 		temp = ft_strjoin(line, buffer);
+		if (!temp)
+		{
+			free(line);
+			return (NULL);
+		}
 		free(line);
 		line = temp;
 		if (ft_strchr(buffer, '\n'))

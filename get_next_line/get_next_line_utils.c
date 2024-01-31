@@ -11,6 +11,8 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdio.h>
+#include <unistd.h>
 
 size_t	ft_strlen(char *str)
 {
@@ -24,7 +26,7 @@ size_t	ft_strlen(char *str)
 
 char	*ft_strchr(char *s, int c)
 {
-	size_t i;
+	size_t	i;
 
 	if (!s)
 		return (NULL);
@@ -48,6 +50,7 @@ char	*ft_strdup(const char *s)
 {
 	size_t	len;
 	char	*dup;
+
 	if (!s)
 		return (NULL);
 	len = ft_strlen((char *)s);
@@ -62,7 +65,7 @@ char	*ft_strdup(const char *s)
 
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	char *d = (char *)dest;
+	char	*d = (char *)dest;
 	const char *s = (const char *)src;
 	while (n--)
 		*d++ = *s++;
@@ -86,6 +89,7 @@ char	*ft_strjoin(char *s1, char *s2)
 		result[i] = s1[i];
 		i++;
 	}
+	j = 0;
 	while (s2[j])
 	{
 		result[i + j] = s2[j];
