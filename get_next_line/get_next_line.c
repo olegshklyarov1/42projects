@@ -12,41 +12,97 @@
 
 #include "get_next_line.h"
 #include <stdio.h>
-#include <unistd.h>
+#include <stdlib.h>
+
+void	clean_list(t_list **list)
+{
+	t_list	*last_node;
+	t_list	*clean_node;
+	int		i;
+	int		j;
+	char	*buf;
+
+	buf = malloc(BUFFER_SIZE + 1);
+	clean_node = malloc(sizeof(t_list));
+	if (NULL == buf || NULL == clean_node)
+		return ;
+	last_node = find_last_node(*list);
+	i = 0;
+	j = 0;
+	while (last_node->buffer[i] && last_node->buffer[i] != '\n')
+		i++;
+	while (last_node->buffer[i] && last_node->buffer[++i])
+		buf[j++] = last_node->buffer[i];
+	buf[j] = '\0';
+	clean_node->buffer = buf;
+	clean_node->next = NULL;
+	free_all(list, clean_node, buf);
+}
+
+char	*get_line(t_list *list)
+{
+	int	len;
+	char	*line;
+
+	if (list == NULL)
+		return (NULL);
+	len = len_to_newline(list);
+	line = malloc(len + 1);
+	if (line == NULL)
+		return (NULL);
+	copy_str(list, line);
+	return (line);
+}
+
+void	join(t_list **list, char *buf)
+{
+	t_list	*new_node;
+	t_list	*last_node;
+
+	last_node = find_last_node(*list);
+	new_node = malloc(sizeof(t_list));
+	if (new_node == NULL)
+		return ;
+	if (last_node == NULL)
+		*list = new_node;
+	else
+		last_node->next = new_node;
+	new_node->buffer = buf;
+	new_node->next = NULL;
+}
+
+void	create_list(t_list **list, int fd)
+{
+	int	bytes_read;
+	char	*buf;
+
+	while (!find_newline(*list))
+	{
+		buf = malloc(BUFFER_SIZE + 1);
+		if (buf == NULL)
+			return ;
+		bytes_read = read(fd, buf, BUFFER_SIZE);
+		if (!bytes_read)
+		{
+			free(buf);
+			return ;
+		}
+		buf[bytes_read = '\0'];
+		join(list, buf);
+	}
+}
 
 char	*get_next_line(int fd)
 {
-	char	*line;
-	char	*buffer;
-	char	*temp;
-	int	bytes_read;
+	static t_list	*list = NULL;
+	char	*next_line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &next_line, 0) < 0)
 		return (NULL);
-	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
-	if (!buffer)
+	create_list(&list, fd);
+	if (list == NULL)
 		return (NULL);
-	line = ft_strdup("");
-	bytes_read = read(fd, buffer, BUFFER_SIZE);
-	while (bytes_read > 0)
-	{
-		buffer[bytes_read] = '\0';
-		temp = ft_strjoin(line, buffer);
-		if (!temp)
-		{
-			free(line);
-			return (NULL);
-		}
-		free(line);
-		line = temp;
-		if (ft_strchr(buffer, '\n'))
-			break;
-	}
-	free(buffer);
-	if (bytes_read == -1 || (bytes_read == 0 && line[0] == '\0'))
-	{
-		free(line);
-		return (NULL);
-	}
-	return (line);
+	next_line = get_line(list);
+	clean_list(&list);
+	return (next_line);
 }

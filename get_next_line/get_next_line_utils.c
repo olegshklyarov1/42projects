@@ -14,89 +14,106 @@
 #include <stdio.h>
 #include <unistd.h>
 
-size_t	ft_strlen(char *str)
+int	find_newline(t_list *list)
 {
-	size_t i;
+	int	i;
 
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
-
-char	*ft_strchr(char *s, int c)
-{
-	size_t	i;
-
-	if (!s)
-		return (NULL);
-	if (c == '\0')
+	if (NULL == list)
+		return (0);
+	while (list)
 	{
-		i = ft_strlen(s);
-		return (s + i);
+		i = 0;
+		while (list->buffer[i] && i < BUFFER_SIZE)
+		{
+			if (list->buffer[i] == '\n')
+				return (1);
+			++i;
+		}
+		list = list->next;
 	}
-	i = 0;
-	while (s[i])
-	{
-		if (s[i] == c)
-			return (s + i);
-		i++;
-	}
-	return (NULL);
+	return (0);
 }
 
-
-char	*ft_strdup(const char *s)
+t_list	*find_last_node(t_list *list)
 {
-	size_t	len;
-	char	*dup;
-
-	if (!s)
+	if (NULL == list)
 		return (NULL);
-	len = ft_strlen((char *)s);
-	dup = (char *)malloc((len + 1) * sizeof(char));
-	if (!dup)
-		return (NULL);
-	ft_memcpy(dup, s, len);
-	dup[len] = '\0';
-	return (dup);
+	while (list->next)
+		list = list->next;
+	return (list);
 }
 
-
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+void	copy_str(t_list *list, char *str)
 {
-	char	*d;
+	int	i;
+	int	j;
 
-	d = (char *)dest;
-	const char *s = (const char *)src;
-	while (n--)
-		*d++ = *s++;
-	return dest;
-}
-
-char	*ft_strjoin(char *s1, char *s2)
-{
-	char	*result;
-	size_t	i;
-	size_t	j;
-
-	if (!s1 || !s2)
-		return(NULL);
-	result = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
-	if (!result)
-		return(NULL);
-	i = 0;
-	while (s1[i])
-	{
-		result[i] = s1[i];
-		i++;
-	}
+	if (NULL == list)
+		return ;
 	j = 0;
-	while (s2[j])
+	while (list)
 	{
-		result[i + j] = s2[j];
-		j++;
+		i = 0;
+		while (list->buffer[i])
+		{
+			if (list->buffer[i] == '\n')
+			{
+				str[j++] = '\n';
+				str[j] = '\0';
+				return ;
+			}
+			str[j++] = list->buffer[i++];
+		}
+		list = list->next;
 	}
-	result[i + j] = '\0';
-	return (result);
+	str[j] = '\0';
+}
+
+int	len_to_newline(t_list *list)
+{
+	int	i;
+	int	len;
+
+	if (list == NULL)
+		return (0);
+	len = 0;
+	while (list != NULL)
+	{
+		i = 0;
+		while (list->buffer[i] != 0)
+		{
+			if (list->buffer[i] == '\n')
+			{
+				++len;
+				return (len);
+			}
+			i++;
+			len++;
+		}
+		list = list->next;
+	}
+	return (len);
+}
+
+void	free_all(t_list **list, t_list *clean_node, char *buf)
+{
+	t_list	*tmp;
+
+	if (NULL == *list)
+		return ;
+	while (*list)
+	{
+		tmp = (*list)->next;
+		free((*list)->buffer);
+		free(*list);
+		*list = tmp;
+	}
+	*list = NULL;
+	if (clean_node->buffer[0])
+		*list = clean_node;
+	else
+	{
+		free(buf);
+		free(clean_node);
+	}
 }

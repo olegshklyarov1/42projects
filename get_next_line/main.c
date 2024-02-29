@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdio.h>
 
 int main(void)
 {
@@ -30,7 +31,7 @@ int main(void)
         if (!line)
             break;
 
-        printf("%s\n", line);
+        printf("%s", line);
         free(line);
     }
 
