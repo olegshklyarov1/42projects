@@ -82,12 +82,12 @@ void	create_list(t_list **list, int fd)
 		if (buf == NULL)
 			return ;
 		bytes_read = read(fd, buf, BUFFER_SIZE);
-		if (!bytes_read)
+		if (!bytes_read || bytes_read < 0)
 		{
 			free(buf);
-			return ;
+			return NULL;
 		}
-		buf[bytes_read = '\0'];
+		buf[bytes_read] = '\0';
 		join(list, buf);
 	}
 }
@@ -97,7 +97,7 @@ char	*get_next_line(int fd)
 	static t_list	*list = NULL;
 	char	*next_line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &next_line, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	create_list(&list, fd);
 	if (list == NULL)

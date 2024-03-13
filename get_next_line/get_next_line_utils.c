@@ -18,7 +18,7 @@ int	find_newline(t_list *list)
 {
 	int	i;
 
-	if (NULL == list)
+	if (list == NULL)
 		return (0);
 	while (list)
 	{
