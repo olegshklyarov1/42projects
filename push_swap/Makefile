@@ -4,7 +4,7 @@ CC = gcc
 CFLAGS = -Wall -Werror -Wextra 
 MAKE_LIB = ar -rcs
 
-SRCS = $(*.c)
+SRCS = $(wildcard *.c)
 OBJS = $(SRCS:.c=.o)
 
 all : $(NAME)
@@ -27,4 +27,4 @@ fclean : clean
 
 re : fclean all
 
-.PHONY : all clean fclea re
+.PHONY : all clean fclean re

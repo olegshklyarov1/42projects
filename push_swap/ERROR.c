@@ -1,9 +1,8 @@
 #include "push_swap.h"
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 
-
-void    free_matrix(char **argv)
+void	free_matrix(char **argv)
 {
 	int	i;
 
@@ -15,10 +14,9 @@ void    free_matrix(char **argv)
 	free(argv - 1);
 }
 
-
 void	free_stack(t_stack_node **stack)
 {
-	t_stack_node    *tmp;
+	t_stack_node	*tmp;
 
 	if (!stack || !(*stack))
 		return ;
@@ -31,7 +29,6 @@ void	free_stack(t_stack_node **stack)
 	*stack = NULL;
 }
 
-
 void	error_free(t_stack_node **a, char **argv, bool flag_argc_2)
 {
 	free_stack(a);
@@ -41,16 +38,13 @@ void	error_free(t_stack_node **a, char **argv, bool flag_argc_2)
 	exit(1);
 }
 
-
 int	error_syntax(char *str_nbr)
 {
-	if (!(*str_nbr == '+'
-			|| *str_nbr == '-'
-			|| (*str_nbr >= '0' && *str_nbr <= '9')))
+	if (!(*str_nbr == '+' || *str_nbr == '-' || (*str_nbr >= '0'
+				&& *str_nbr <= '9')))
 		return (1);
-	if ((*str_nbr == '+'
-			|| *str_nbr == '-')
-		&& !(str_nbr[1] >= '0' && str_nbr[1] <= '9'))
+	if ((*str_nbr == '+' || *str_nbr == '-') && !(str_nbr[1] >= '0'
+			&& str_nbr[1] <= '9'))
 		return (1);
 	while (*++str_nbr)
 	{
@@ -59,7 +53,6 @@ int	error_syntax(char *str_nbr)
 	}
 	return (0);
 }
-
 
 int	error_repetition(t_stack_node *a, int nbr)
 {

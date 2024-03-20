@@ -6,7 +6,7 @@
 /*   By: oshklyar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:33:21 by oshklyar          #+#    #+#             */
-/*   Updated: 2023/12/04 16:22:12 by oshklyar         ###   ########.fr       */
+/*   Updated: 2024/03/20 16:40:19 by oshklyar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	clean_list(t_list **list)
 
 char	*get_line(t_list *list)
 {
-	int	len;
+	int		len;
 	char	*line;
 
 	if (list == NULL)
@@ -73,7 +73,7 @@ void	join(t_list **list, char *buf)
 
 void	create_list(t_list **list, int fd)
 {
-	int	bytes_read;
+	int		bytes_read;
 	char	*buf;
 
 	while (!find_newline(*list))
@@ -85,7 +85,7 @@ void	create_list(t_list **list, int fd)
 		if (!bytes_read || bytes_read < 0)
 		{
 			free(buf);
-			return NULL;
+			return ;
 		}
 		buf[bytes_read] = '\0';
 		join(list, buf);
@@ -94,8 +94,8 @@ void	create_list(t_list **list, int fd)
 
 char	*get_next_line(int fd)
 {
-	static t_list	*list = NULL;
-	char	*next_line;
+	static t_list *list = NULL;
+	char *next_line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);

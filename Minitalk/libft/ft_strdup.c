@@ -1,40 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oshklyar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/04 15:23:12 by oshklyar          #+#    #+#             */
-/*   Updated: 2023/12/04 15:35:01 by oshklyar         ###   ########.fr       */
+/*   Created: 2023/11/08 09:47:56 by oshklyar          #+#    #+#             */
+/*   Updated: 2023/11/13 11:10:02 by oshklyar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include <stdio.h>
+#include "libft.h"
 
-int main(void)
+char	*ft_strdup(const char *s1)
 {
-	int fd;
-	char *line;
+	char		*str;
+	int			i;
 
-	fd = open("file", O_RDONLY);
-	if (fd == -1)
+	i = 0;
+	str = malloc(sizeof(char) * (ft_strlen(s1) + 1));
+	if (str == NULL)
+		return (NULL);
+	while (s1[i])
 	{
-		perror("error opening file");
-		return (1);
+		str[i] = s1[i];
+		i++;
 	}
-	
-    while (1)
-    {
-        line = get_next_line(fd);
-        if (!line)
-            break;
-
-        printf("%s", line);
-        free(line);
-    }
-
-    close(fd);
-    return 0;
+	str[i] = '\0';
+	return (str);
 }

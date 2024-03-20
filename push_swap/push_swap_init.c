@@ -4,22 +4,22 @@
 #include <stdio.h>
 
 /*
- * Set the current position of every node 
+ * Set the current position of every node
  * in the current state-configuration
-*/
+ */
 void	set_current_position(t_stack_node *stack)
 {
 	int	i;
-	int	centerline;
+	int	center;
 
 	i = 0;
 	if (NULL == stack)
 		return ;
-	centerline = stack_len(stack) / 2;
+	center = stack_len(stack) / 2;
 	while (stack)
 	{
 		stack->current_position = i;
-		if (i <= centerline)
+		if (i <= center)
 			stack->above_median = true;
 		else
 			stack->above_median = false;
@@ -28,16 +28,7 @@ void	set_current_position(t_stack_node *stack)
 	}
 }
 
-/*
- *	Best match is..
- *   | "The Smallest-bigger value" |
- *
- *  if no node is Bigger, best_match is the Smallest node.
- *  TLDR 
- *  With this function every node in b gets its target node in a
-*/
-static void	set_target_node(t_stack_node *a,
-							t_stack_node *b)
+static void	set_target_node(t_stack_node *a, t_stack_node *b)
 {
 	t_stack_node	*current_a;
 	t_stack_node	*target_node;
@@ -65,12 +56,6 @@ static void	set_target_node(t_stack_node *a,
 	}
 }
 
-/*
- * Set the prices to push the node
- * from b -> a
- * The price checks for the relative positions in the stack
- * for every node, setting the respective price
-*/
 void	set_price(t_stack_node *a, t_stack_node *b)
 {
 	int	len_a;
@@ -91,10 +76,6 @@ void	set_price(t_stack_node *a, t_stack_node *b)
 	}
 }
 
-/*
- * Flag the cheapest node in the current
- * stacks configurations
-*/
 void	set_cheapest(t_stack_node *b)
 {
 	long			best_match_value;
@@ -115,13 +96,6 @@ void	set_cheapest(t_stack_node *b)
 	best_match_node->cheapest = true;
 }
 
-/*
- * All the necessary values to make the push
- * 		~Relative Positions
- * 		~Target node, the b node to make emerge
- * 		~Price for every configuration
- * 		~Cheapest in the current configuration
-*/
 void	init_nodes(t_stack_node *a, t_stack_node *b)
 {
 	set_current_position(a);

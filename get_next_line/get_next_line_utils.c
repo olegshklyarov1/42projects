@@ -18,7 +18,7 @@ int	find_newline(t_list *list)
 {
 	int	i;
 
-	if (list == NULL)
+	if (NULL == list)
 		return (0);
 	while (list)
 	{
@@ -97,7 +97,7 @@ int	len_to_newline(t_list *list)
 
 void	free_all(t_list **list, t_list *clean_node, char *buf)
 {
-	t_list	*tmp;
+	t_list *tmp;
 
 	if (NULL == *list)
 		return ;

@@ -5,48 +5,38 @@
 #                                                     +:+ +:+         +:+      #
 #    By: oshklyar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/11/20 11:58:26 by oshklyar          #+#    #+#              #
-#    Updated: 2023/11/20 13:57:14 by oshklyar         ###   ########.fr        #
+#    Created: 2023/11/08 11:51:44 by oshklyar          #+#    #+#              #
+#    Updated: 2023/11/13 16:18:23 by oshklyar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Wextra -Werror
 
-NAME = libftprintf.a
+NAME = libft.a
 
-SRC = ft_printf.c \
-	print_string.c	\
-	print_int.c \
-	print_char.c \
-	print_pointer.c \
-	print_hex.c \
-	print_unsigned.c
+SRC = ft_bzero.c ft_isalnum.c ft_isalpha.c\
+ft_isascii.c ft_isdigit.c ft_isprint.c ft_memcpy.c\
+ft_memmove.c ft_memset.c ft_strchr.c ft_strlcat.c\
+ft_strlcpy.c ft_strlen.c ft_tolower.c ft_toupper.c\
+ft_strrchr.c ft_strncmp.c ft_memchr.c ft_atoi.c\
+ft_strnstr.c ft_memcmp.c ft_strdup.c ft_calloc.c\
+ft_substr.c ft_strjoin.c ft_strtrim.c ft_split.c\
+ft_itoa.c ft_strmapi.c ft_putchar_fd.c ft_putstr_fd.c\
+ft_putendl_fd.c ft_striteri.c ft_putnbr_fd.c
 
 OBJ = $(SRC:.c=.o)
 
-all : $(NAME)
-
 $(NAME):$(OBJ)
-	make -C libft
-	cp libft/libft.a .
-	mv libft.a $(NAME)
 	ar rcs $(NAME) $(OBJ)
-
-%.o : %.c libftprintf.h
-	$(CC) $(CFLAGS) -c $< -o $@
-	
-	
 clean :
-	make clean -C libft
-	rm -rf $(OBJ)
+	rm -f $(OBJ)
 
-fclean: clean
-	rm -rf $(NAME)
-	make fclean -C libft
+fclean : clean
+	rm -f $(NAME) libft.so
 
-re: fclean all
-	make re -C libft
+re : fclean
+	$(NAME)
 
-.PHONY: all clean fclean re
+.PHONY:clean fclean re so
