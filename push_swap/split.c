@@ -58,7 +58,7 @@ char	**ft_split(char *s, char sep)
 		exit(1);
 	split = malloc(sizeof(char *) * (size_t)(word_number + 2));
 	if (split == NULL)
-	    return (NULL);
+		return (NULL);
 	while (word_number-- >= 0)
 	{
 		if (i == 0)

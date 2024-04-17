@@ -53,7 +53,7 @@ t_stack_node	*find_smallest(t_stack_node *stack)
 		}
 		stack = stack->next;
 	}
-    return (smallest_node);
+	return (smallest_node);
 }
 
 t_stack_node	*return_cheapest(t_stack_node *stack)
