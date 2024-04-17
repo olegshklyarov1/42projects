@@ -10,7 +10,6 @@
 typedef struct s_stack_node
 {
 	int					value;
-	int					index;
 	int					current_position;
 	int					final_index;
 	int					push_price;

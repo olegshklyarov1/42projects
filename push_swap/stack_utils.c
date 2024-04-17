@@ -50,8 +50,8 @@ t_stack_node	*find_smallest(t_stack_node *stack)
 		{
 			smallest = stack->value;
 			smallest_node = stack;
-		    stack = stack->next;
 		}
+		stack = stack->next;
 	}
     return (smallest_node);
 }

@@ -17,14 +17,16 @@ void	free_matrix(char **argv)
 void	free_stack(t_stack_node **stack)
 {
 	t_stack_node	*tmp;
+	t_stack_node	*current;
 
-	if (!stack || !(*stack))
+	if (stack == NULL)
 		return ;
-	while (*stack)
+	current = *stack;
+	while (current)
 	{
-		tmp = (*stack)->next;
-		free(*stack);
-		*stack = tmp;
+		tmp = current->next;
+		free(current);
+		current = tmp;
 	}
 	*stack = NULL;
 }

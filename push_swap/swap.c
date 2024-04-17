@@ -2,19 +2,18 @@
 
 static void	swap(t_stack_node **head)
 {
-	if (NULL == *head || NULL == (*head)->next)
+	int len;
+
+	len = stack_len(*head);
+	if (NULL == *head || NULL == head || 1 == len)
 		return ;
-    t_stack_node *first = *head;
-	t_stack_node *second = (*head)->next;
-    if (first->prev)
-		first->prev->next = second;
-	if (second->next)
-        second->next->prev = first;
-    first->next = second->next;
-    second->prev = first->prev;
-    first->prev = second;
-    second->next = first;
-    *head = second;
+	*head = (*head)->next;
+	(*head)->prev->prev = *head;
+	(*head)->prev->next = (*head)->next;
+	if ((*head)->next)
+		(*head)->next->prev = (*head)->prev;
+	(*head)->next = (*head)->prev;
+	(*head)->prev = NULL;
 }
 
 void	sa(t_stack_node **a, bool checker)
