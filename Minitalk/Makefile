@@ -1,33 +1,32 @@
+SOURCES = server.c client.c
+OBJECTS = $(SOURCES:.c=.o)
 
-SRC = client.c server.c
-OBJ = $(SRC:.c=.o)
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra
-LIBS = -Llibft -lft
-
+CFLAGS = -Wall -Wextra -Werror
 
 all: server client
 
-server: $(OBJ) libft
-	$(CC) -o $@ server.o $(LIBS)
+bonus: server client
 
-client: $(OBJ) libft
-	$(CC) -o $@ client.o $(LIBS)
+server: server.o libft
+	$(CC) -o $@ $< -Llibft -lft
+
+client: client.o libft
+	$(CC) -o $@ $< -Llibft -lft
 
 %.o: %.c
-	$(CC) -c $(CFLAGS) $<
+	$(CC) -c $(CFLAGS) $?
 
 libft:
 	make -C libft
 
 clean:
-	rm -f $(OBJ)
+	rm -f $(OBJECTS)
 	make -C libft clean
-
+	
 fclean: clean
-	rm -f server client
-	make -C libft fclean
+	rm -f server client libft/libft.a
 
 re: fclean all
 
-.PHONY: all clean fclean re libft
+.PHONY: all bonus libft clean fclean re
