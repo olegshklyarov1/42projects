@@ -32,7 +32,7 @@ static void	mt_kill(int pid, char *str)
 				kill(pid, SIGUSR2);
 			else
 				kill(pid, SIGUSR1);
-			usleep(100);
+			usleep(500);
 		}
 	}
 	i = 8;
@@ -46,10 +46,7 @@ static void	mt_kill(int pid, char *str)
 int	main(int argc, char **argv)
 {
 	if (argc != 3 || !ft_strlen(argv[2]))
-	{
-			ft_putstr_fd(" Must put PID displayed and the message to sent as second argument", 1);
 		return (1);
-	}
 	ft_putstr_fd("Sent    : ", 1);
 	ft_putnbr_fd(ft_strlen(argv[2]), 1);
 	ft_putchar_fd('\n', 1);
