@@ -20,6 +20,7 @@ static void	handle_pixel(int x, int y, t_fractal *fractal)
 		t_complex	c;
 		int	i;
 		int	color;
+		double color_scale;
 		
 		i = 0;
 
@@ -28,15 +29,16 @@ static void	handle_pixel(int x, int y, t_fractal *fractal)
 
 		/*pixel coordinates and scaling with map function*/
 
-		c.x = map(x, -2, +2, 0, WIDTH);
-		c.y = map(y, +2, -2, 0, HEIGHT);
+		c.x = map(x * 799 / WIDTH);
+		c.y = map((HEIGHT - y) * 799 / HEIGHT);
 
 		while (i < fractal->iterations)
 		{
 				z = sum_complex(square_complex(z), c);
 				if ((z.x * z.x) + (z.y * z.y) > fractal->escape_value)
 				{
-						color = map(i, COLOR_BLACK, COLOR_WHITE, 0, fractal->iterations);
+						color_scale = (double)(COLOR_WHITE - COLOR_BLACK) / fractal->iterations;
+						color = COLOR_BLACK + (int)(i * color_scale);
 						pixel_put(x, y, &fractal->img, color);
 						return ;
 				}

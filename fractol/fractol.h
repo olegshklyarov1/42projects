@@ -15,6 +15,7 @@
 #define HEIGHT 800
 
 // Basic Colors
+
 #define COLOR_RED      0xFF0000
 #define COLOR_GREEN    0x00FF00
 #define COLOR_BLUE     0x0000FF
@@ -38,12 +39,7 @@
 
 
 
-/*
-  FRACTAL ID
- -MLX Library
- -IMAGE
- -HOOKS
-*/
+//Structures
 
 typedef	struct s_complex
 {
@@ -68,7 +64,7 @@ typedef struct s_fractal
 		t_img	img;
 		double	escape_value;
 		int	iterations;
-}				t_fractal;
+}			t_fractal;
 
 
 
@@ -88,7 +84,7 @@ void	fractal_init(t_fractal *fractal);
 
 /*Math*/
 
-double map(double unscaled_num, double new_min, double new_max, double old_min, double old_max);
+double map(double unscaled_num);
 t_complex	sum_complex(t_complex z1, t_complex z2);
 t_complex	square_complex(t_complex z);
 
