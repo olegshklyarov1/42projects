@@ -14,37 +14,47 @@ static void pixel_put(int x, int y, t_img *img, int color)
 // z init is (0, 0)
 // c is the actual pixel/point
 
+static void	mandel_vs_julia(t_complex *z, t_complex *c, t_fractal *fractal)
+{
+	if (!ft_strncmp(fractal->name, "julia", 5))
+	{
+		c->x = fractal->julia_x;
+		c->y = fractal->julia_y;
+	}
+	else
+	{
+		c->x = z->x;
+		c->y = z->y;
+	}
+}
+
+
 static void	handle_pixel(int x, int y, t_fractal *fractal)
 {
 		t_complex	z;
 		t_complex	c;
 		int	i;
 		int	color;
-		double color_scale;
 		
 		i = 0;
 
-		z.x = 0.0;  //first iteration
-		z.y = 0.0;
-
 		/*pixel coordinates and scaling with map function*/
 
-		c.x = map(x * 799 / WIDTH);
-		c.y = map((HEIGHT - y) * 799 / HEIGHT);
-
+		z.x = (map(x, -2, +2, 0, WIDTH) * fractal->zoom) + fractal->shift_x;
+		z.y = (map(y, +2, -2, 0, HEIGHT) * fractal->zoom) + fractal->shift_y;
+		mandel_vs_julia(&z, &c, fractal);
 		while (i < fractal->iterations)
 		{
 				z = sum_complex(square_complex(z), c);
 				if ((z.x * z.x) + (z.y * z.y) > fractal->escape_value)
 				{
-						color_scale = (double)(COLOR_WHITE - COLOR_BLACK) / fractal->iterations;
-						color = COLOR_BLACK + (int)(i * color_scale);
+						color = map(i, COLOR_BLACK, COLOR_WHITE, 0, fractal->iterations);
 						pixel_put(x, y, &fractal->img, color);
 						return ;
 				}
 				i++;
 		}
-		pixel_put(x, y, &fractal->img, COLOR_CANDY_PURPLE);
+		pixel_put(x, y, &fractal->img, COLOR_ELECTRIC_BLUE);
 }
 
 void	fractal_render(t_fractal *fractal)

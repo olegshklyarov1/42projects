@@ -36,7 +36,7 @@ double adob(char *s)
 		sign = +1;
 		pow = 1;
 
-		while ((*s >= 9 && *s <= 13) || (*s == 32))
+		while ((*s >= 9 && *s <= 13) || *s == 32)
 				s++;
 		while ('+' == *s || '-' == *s)
 				if (*s == '-')

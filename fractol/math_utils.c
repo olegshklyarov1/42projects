@@ -2,13 +2,8 @@
 
 // Scaling [0...799] to [-2...+2]
 
-double map(double unscaled_num)
+double map(double unscaled_num, double new_min, double new_max, double old_min, double old_max)
 {
-    double old_min = 0.0;
-    double old_max = 799.0;
-    double new_min = -2.0;
-    double new_max = 2.0;
-    
     return (new_max - new_min) * (unscaled_num - old_min) / (old_max - old_min) + new_min;
 }
 

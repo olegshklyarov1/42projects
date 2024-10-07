@@ -3,7 +3,7 @@
 #include <unistd.h>
 #include "libft/libft.h"
 
-static void	action(int sig)
+static void	receive_signal(int sig)
 {
 	static int	received = 0;
 
@@ -32,27 +32,30 @@ static void	mt_kill(int pid, char *str)
 				kill(pid, SIGUSR2);
 			else
 				kill(pid, SIGUSR1);
-			usleep(500);
+			usleep(5000);
 		}
 	}
 	i = 8;
 	while (i--)
 	{
 		kill(pid, SIGUSR1);
-		usleep(500);
+		usleep(5000);
 	}
 }
 
 int	main(int argc, char **argv)
 {
 	if (argc != 3 || !ft_strlen(argv[2]))
+	{
+		write (1, "Usage : <./client> <server_pid> <message>\n", 42);
 		return (1);
+	}
 	ft_putstr_fd("Sent    : ", 1);
 	ft_putnbr_fd(ft_strlen(argv[2]), 1);
 	ft_putchar_fd('\n', 1);
 	ft_putstr_fd("Received: ", 1);
-	signal(SIGUSR1, action);
-	signal(SIGUSR2, action);
+	signal(SIGUSR1, receive_signal);
+	signal(SIGUSR2, receive_signal);
 	mt_kill(ft_atoi(argv[1]), argv[2]);
 	while (1)
 		pause();

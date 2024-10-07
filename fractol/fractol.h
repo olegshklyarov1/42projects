@@ -64,6 +64,11 @@ typedef struct s_fractal
 		t_img	img;
 		double	escape_value;
 		int	iterations;
+		double shift_x;
+		double shift_y;
+		double zoom;
+		double julia_x;
+		double julia_y;
 }			t_fractal;
 
 
@@ -84,14 +89,21 @@ void	fractal_init(t_fractal *fractal);
 
 /*Math*/
 
-double map(double unscaled_num);
-t_complex	sum_complex(t_complex z1, t_complex z2);
-t_complex	square_complex(t_complex z);
+double map(double unscaled_num, double new_min, double new_max, double old_min, double old_max);
+t_complex   sum_complex(t_complex z1, t_complex z2);
+t_complex   square_complex(t_complex z);
+
 
 /*render*/
 
 void	fractal_render(t_fractal *fractal);
+int	julia_track(int x, int y, t_fractal *fractal);
 
+/*hooks*/
+
+int key_handle(int keysym, t_fractal *fractal);
+int mouse_handle (int button, int x, int y, t_fractal *fractal);
+int	close_handle(t_fractal *fractal);
 
 
 
