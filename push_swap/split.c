@@ -37,7 +37,7 @@ static char	*get_next_word(char *s, char sep)
 		cursor++;
 	while ((s[cursor + word_len] != sep) && s[cursor + word_len])
 		word_len++;
-	next_str = malloc(sizeof(char) * (word_len + 1));
+	next_str = malloc(sizeof(char) * word_len + 1);
 	if (next_str == NULL)
 		return (NULL);
 	while ((s[cursor] != sep) && s[cursor])
