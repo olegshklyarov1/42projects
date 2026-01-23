@@ -6,7 +6,7 @@
 #    By: olshklya <olshklya@student.42angouleme.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/16 16:48:46 by olshklya          #+#    #+#              #
-#    Updated: 2026/01/16 22:51:15 by olshklya         ###   ########.fr        #
+#    Updated: 2026/01/23 04:02:11 by olshklya         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ $(OBJ_DIR)/%.o: %.c
 
 $(MLX):
 	@printf "$(GREEN)Compiling MinilibX...$(RESET)\n"
-	@CFLAGS="-O3 -Wno-strict-prototypes -Wno-old-style-declaration" make -C $(MLX_DIR) 2>/dev/null || true
+	@CFLAGS="make -C $(MLX_DIR) 2>/dev/null || true
 	@printf "$(GREEN)MinilibX compiled!$(RESET)\n"
 
 clean:
