@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: olshklya <olshklya@student.42angouleme.    +#+  +:+       +#+         #
+#    By: olshklya <olshklya@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/16 16:48:46 by olshklya          #+#    #+#              #
-#    Updated: 2026/01/23 04:02:11 by olshklya         ###   ########.fr        #
+#    Updated: 2026/02/24 18:35:00 by olshklya         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,9 @@
 NAME		= fractol
 
 # Directories
-SRC_DIR		= .
+SRC_DIR		= src
 OBJ_DIR		= obj
-INC_DIR		= .
+INC_DIR		= includes
 MLX_DIR		= minilibx
 
 # Source files
@@ -26,8 +26,8 @@ SRCS		= main.c init.c render.c utils.c math_utils.c events.c colors.c
 OBJS		= $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
 # Compiler and flags
-CC			= clang
-CFLAGS		= -Wall -Wextra -Werror -O3
+CC			= cc
+CFLAGS		= -Wall -Wextra -Werror
 INCLUDES	= -I$(INC_DIR) -I$(MLX_DIR)
 
 # Libraries
@@ -47,14 +47,14 @@ $(NAME): $(OBJS) $(MLX)
 	@$(CC) $(CFLAGS) $(OBJS) $(MLX_FLAGS) -o $(NAME)
 	@printf "$(GREEN)$(NAME) created successfully!$(RESET)\n"
 
-$(OBJ_DIR)/%.o: %.c
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(OBJ_DIR)
 	@printf "$(GREEN)Compiling $<...$(RESET)\n"
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(MLX):
 	@printf "$(GREEN)Compiling MinilibX...$(RESET)\n"
-	@CFLAGS="make -C $(MLX_DIR) 2>/dev/null || true
+	@make -C $(MLX_DIR) 2>/dev/null || true
 	@printf "$(GREEN)MinilibX compiled!$(RESET)\n"
 
 clean:
