@@ -1,8 +1,9 @@
 SOURCES = server.c client.c
 OBJECTS = $(SOURCES:.c=.o)
+HEADERS = minitalk.h 
 
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CC = cc
+CFLAGS = -Wall -Wextra -Werror -g
 
 all: server client
 
@@ -14,18 +15,20 @@ server: server.o libft
 client: client.o libft
 	$(CC) -o $@ $< -Llibft -lft
 
-%.o: %.c
-	$(CC) -c $(CFLAGS) $?
+%.o: %.c $(HEADERS)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 libft:
 	make -C libft
 
 clean:
 	rm -f $(OBJECTS)
+	rm -f $(HEADERS:.h=.h.gch)
 	make -C libft clean
 	
 fclean: clean
-	rm -f server client libft/libft.a
+	rm -f server client
+	make -C libft fclean
 
 re: fclean all
 

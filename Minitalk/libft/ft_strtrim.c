@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                         :+:      :+:    :+: */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oshklyar <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: olshklya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/08 09:47:56 by oshklyar          #+#    #+#             */
-/*   Updated: 2023/11/08 13:38:52 by oshklyar         ###   ########.fr       */
+/*   Created: 2025/10/15 17:55:38 by olshklya          #+#    #+#             */
+/*   Updated: 2025/10/15 17:55:57 by olshklya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_getstart(char const *s1, char const *set)
+static int	ft_getstart(char const *s1, char const *set)
 {
 	size_t	len;
 	size_t	i;
@@ -28,7 +28,7 @@ int	ft_getstart(char const *s1, char const *set)
 	return (i);
 }
 
-int	ft_getend(char const *s1, char const *set)
+static int	ft_getend(char const *s1, char const *set)
 {
 	size_t	len;
 	size_t	i;

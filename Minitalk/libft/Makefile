@@ -3,18 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: oshklyar <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: olshklya <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/11/08 11:51:44 by oshklyar          #+#    #+#              #
-#    Updated: 2023/11/13 16:18:23 by oshklyar         ###   ########.fr        #
+#    Created: 2025/10/15 16:42:28 by olshklya          #+#    #+#              #
+#    Updated: 2025/10/21 18:51:32 by olshklya         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = gcc
+CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
-
-NAME = libft.a
 
 SRC = ft_bzero.c ft_isalnum.c ft_isalpha.c\
 ft_isascii.c ft_isdigit.c ft_isprint.c ft_memcpy.c\
@@ -26,17 +24,22 @@ ft_substr.c ft_strjoin.c ft_strtrim.c ft_split.c\
 ft_itoa.c ft_strmapi.c ft_putchar_fd.c ft_putstr_fd.c\
 ft_putendl_fd.c ft_striteri.c ft_putnbr_fd.c
 
+NAME = libft.a
+
 OBJ = $(SRC:.c=.o)
+
+RM = rm -rf
+
+all : $(NAME)
 
 $(NAME):$(OBJ)
 	ar rcs $(NAME) $(OBJ)
 clean :
-	rm -f $(OBJ)
+	$(RM) $(OBJ)
 
 fclean : clean
-	rm -f $(NAME) libft.so
+	$(RM) $(NAME)
 
-re : fclean
-	$(NAME)
+re : fclean all
 
-.PHONY:clean fclean re so
+.PHONY:all clean fclean re so
