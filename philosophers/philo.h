@@ -6,15 +6,15 @@
 /*   By: olshklya <olshklya@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 19:56:16 by olshklya          #+#    #+#             */
-/*   Updated: 2026/03/30 20:09:32 by olshklya         ###   ########.fr       */
+/*   Updated: 2026/04/26 17:48:21 by olshklya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
-#include <ctime>
 #include <pthread.h>
+#include <limits.h>
 #include <sys/time.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -39,12 +39,13 @@ typedef struct s_data
 	int	number_of_philos;
 	long long	time_to_die;
 	long long	time_to_sleep;
+	long long	time_to_eat;
 	int	must_eat;
 	int	stop;
 	long long	start_time;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print_mutex;
-	pthread_mutex_t mutex_state;
+	pthread_mutex_t state_mutex;
 	t_philo	*philos;
 }	t_data;
 
@@ -55,6 +56,6 @@ int	parse_args(int ac, char **av, t_data *data);
 int	init_data(t_data *data);
 void	clean(t_data *data);
 void	*philo_routine(void *arg);
-void	*monitoring_routine(void *arg);
+void	*monitor_routine(void *arg);
 
 #endif
