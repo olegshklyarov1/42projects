@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: olshklya <olshklya@student.42angouleme.    +#+  +:+       +#+         #
+#    By: olshklya <olshklya@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/30 19:36:59 by olshklya          #+#    #+#              #
-#    Updated: 2026/04/26 19:55:56 by olshklya         ###   ########.fr        #
+#    Updated: 2026/04/28 14:45:39 by olshklya         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
