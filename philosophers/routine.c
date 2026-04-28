@@ -6,7 +6,7 @@
 /*   By: olshklya <olshklya@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/26 16:26:26 by olshklya          #+#    #+#             */
-/*   Updated: 2026/04/26 17:14:21 by olshklya         ###   ########.fr       */
+/*   Updated: 2026/04/28 14:37:42 by olshklya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,9 @@ void	*philo_routine(void *arg)
 	t_philo	*philo;
 	
 	philo = (t_philo *)arg;
-	pthread_mutex_lock(&philo->data->state_mutex);
-	philo->last_meal_time = philo->data->start_time;
-	pthread_mutex_unlock(&philo->data->state_mutex);
 	if (philo->id % 2 == 0)
+		usleep(1000);
+	else if (philo->id == philo->data->number_of_philos)
 		usleep(1000);
 	while (!is_stopped(philo->data))
 	{
@@ -75,7 +74,7 @@ void	*philo_routine(void *arg)
 			break ;
 		}
 		eat(philo);
-		print_state(philo, "is_sleeping");
+		print_state(philo, "is sleeping");
 		ft_sleep(philo->data->time_to_sleep, philo->data);
 	}
 	return (NULL);

@@ -6,13 +6,11 @@
 /*   By: olshklya <olshklya@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/26 12:07:00 by olshklya          #+#    #+#             */
-/*   Updated: 2026/04/26 17:38:00 by olshklya         ###   ########.fr       */
+/*   Updated: 2026/04/28 14:30:45 by olshklya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "philo.h"
-#include <bits/pthreadtypes.h>
-#include <pthread.h>
 
 long long	get_time(void)
 {
@@ -37,8 +35,8 @@ void	ft_sleep(long long ms, t_data *data)
 			return ;
 		}
 		pthread_mutex_unlock(&data->state_mutex);
-	}
 		usleep(500);
+	}
 }
 
 void	print_state(t_philo *philo, char *msg)

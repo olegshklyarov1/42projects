@@ -6,7 +6,7 @@
 /*   By: olshklya <olshklya@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 19:53:29 by olshklya          #+#    #+#             */
-/*   Updated: 2026/04/26 19:54:53 by olshklya         ###   ########.fr       */
+/*   Updated: 2026/04/28 14:33:17 by olshklya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@ int	main(int argc, char *argv[])
 	i = 0;
 	while (i < data.number_of_philos)
 	{
+    	data.philos[i].last_meal_time = data.start_time;
+    	i++;
+	}
+i = 0;
+	while (i < data.number_of_philos)
+	{
 		pthread_create(&data.philos[i].thread, NULL,
 			philo_routine, &data.philos[i]);
 		i++;
@@ -39,7 +45,5 @@ int	main(int argc, char *argv[])
 		pthread_join(data.philos[i].thread, NULL);
 		i++;
 	}
-	
-	
 	return (0);
 }
