@@ -6,12 +6,21 @@
 /*   By: olshklya <olshklya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 19:53:29 by olshklya          #+#    #+#             */
-/*   Updated: 2026/04/28 14:45:37 by olshklya         ###   ########.fr       */
+/*   Updated: 2026/04/30 02:33:08 by olshklya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "philo.h"
-#include <pthread.h>
+
+static int	parse_and_init(int argc, char *argv[], t_data *data)
+{
+	if (!parse_args(argc, argv, data))
+		return (0);
+	if (!init_data(data))
+		return (0);
+	data->start_time = get_time();
+	return (1);
+}
 
 int	main(int argc, char *argv[])
 {
@@ -19,18 +28,15 @@ int	main(int argc, char *argv[])
 	pthread_t	monitor;
 	int	i;
 
-	if (!parse_args(argc, argv, &data))
+	if (!parse_and_init(argc, argv, &data))
 		return (1);
-	if (!init_data(&data))
-		return (1);
-	data.start_time = get_time();
 	i = 0;
 	while (i < data.number_of_philos)
 	{
     	data.philos[i].last_meal_time = data.start_time;
     	i++;
 	}
-i = 0;
+	i = 0;
 	while (i < data.number_of_philos)
 	{
 		pthread_create(&data.philos[i].thread, NULL,

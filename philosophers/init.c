@@ -6,7 +6,7 @@
 /*   By: olshklya <olshklya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/26 12:13:13 by olshklya          #+#    #+#             */
-/*   Updated: 2026/04/28 14:45:28 by olshklya         ###   ########.fr       */
+/*   Updated: 2026/04/28 15:00:46 by olshklya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	atoi_dup(char *str, int *out)
 	{
 		if (*str < '0' || *str > '9')
 			return (0);
-		if (n > INT_MAX)
+		if (n > (INT_MAX - (*str - '0')) / 10)
         	return (0);
 		n = n * 10 + (*str++ - '0');
 	}
