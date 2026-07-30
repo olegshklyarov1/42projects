@@ -6,7 +6,7 @@
 /*   By: olshklya <olshklya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/26 12:07:00 by olshklya          #+#    #+#             */
-/*   Updated: 2026/04/30 02:31:00 by olshklya         ###   ########.fr       */
+/*   Updated: 2026/07/30 17:43:47 by olshklya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,34 @@ void	ft_sleep(long long ms, t_data *data)
 	}
 }
 
+int	is_stopped(t_data *data)
+{
+	int	stop;
+
+	pthread_mutex_lock(&data->state_mutex);
+	stop = data->stop;
+	pthread_mutex_unlock(&data->state_mutex);
+	return (stop);
+}
+
+void	*check_one_arg(void *arg)
+{
+	t_philo	*philo;
+
+	philo = (t_philo *)arg;
+	pthread_mutex_lock(philo->left_fork);
+	print_state(philo, "has taken a fork");
+	while (!is_stopped(philo->data))
+		usleep(500);
+	pthread_mutex_unlock(philo->left_fork);
+	return (NULL);
+}
+
 void	print_state(t_philo *philo, char *msg)
 {
 	pthread_mutex_lock(&philo->data->print_mutex);
-	pthread_mutex_lock(&philo->data->state_mutex);
-	if (!philo->data->stop)
+	if (!is_stopped(philo->data))
 		printf("%lld %d %s\n",
 			get_time() - philo->data->start_time, philo->id, msg);
-	pthread_mutex_unlock(&philo->data->state_mutex);
 	pthread_mutex_unlock(&philo->data->print_mutex);
 }

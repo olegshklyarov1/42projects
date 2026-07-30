@@ -6,7 +6,7 @@
 /*   By: olshklya <olshklya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 19:53:29 by olshklya          #+#    #+#             */
-/*   Updated: 2026/04/30 02:33:08 by olshklya         ###   ########.fr       */
+/*   Updated: 2026/05/11 13:23:38 by olshklya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static int	parse_and_init(int argc, char *argv[], t_data *data)
 int	main(int argc, char *argv[])
 {
 	t_data	data;
-	pthread_t	monitor;
 	int	i;
 
 	if (!parse_and_init(argc, argv, &data))
@@ -43,8 +42,7 @@ int	main(int argc, char *argv[])
 			philo_routine, &data.philos[i]);
 		i++;
 	}
-	pthread_create(&monitor, NULL, monitor_routine, &data);
-	pthread_join(monitor, NULL);
+	monitor(&data);
 	i = 0;
 	while (i < data.number_of_philos)
 	{

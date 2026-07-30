@@ -6,7 +6,7 @@
 /*   By: olshklya <olshklya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 19:56:16 by olshklya          #+#    #+#             */
-/*   Updated: 2026/04/28 14:45:46 by olshklya         ###   ########.fr       */
+/*   Updated: 2026/07/30 17:44:48 by olshklya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,11 @@ void	ft_sleep(long long ms, t_data *data);
 void	print_state(t_philo *philo, char *msg);
 int	parse_args(int ac, char **av, t_data *data);
 int	init_data(t_data *data);
+
 void	clean(t_data *data);
 void	*philo_routine(void *arg);
-void	*monitor_routine(void *arg);
+void	*monitor(void *arg);
+void	*check_one_arg(void *arg);
+int	is_stopped(t_data *data);
 
 #endif

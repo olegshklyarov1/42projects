@@ -6,14 +6,14 @@
 #    By: olshklya <olshklya@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/30 19:36:59 by olshklya          #+#    #+#              #
-#    Updated: 2026/04/28 14:45:39 by olshklya         ###   ########.fr        #
+#    Updated: 2026/07/30 17:37:09 by olshklya         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -pthread -g
-SRCS = main.c init.c routine.c monitor.c utils.c
+SRCS = main.c init_args.c init_data.c routine.c monitor.c utils.c
 OBJS = $(SRCS:.c=.o)
 
 all : $(NAME)

@@ -6,7 +6,7 @@
 /*   By: olshklya <olshklya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/26 17:47:27 by olshklya          #+#    #+#             */
-/*   Updated: 2026/04/28 14:45:43 by olshklya         ###   ########.fr       */
+/*   Updated: 2026/07/30 17:51:36 by olshklya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,17 @@ static int	check_death(t_data *data)
 {
 	int			i;
 	long long	current_time;
-	
+
 	i = 0;
-	current_time = get_time();
 	while (i < data->number_of_philos)
 	{
+		current_time = get_time();
 		if ((current_time - data->philos[i].last_meal_time) > data->time_to_die)
 		{
-			pthread_mutex_lock(&data->print_mutex);
-			printf("%lld %d died\n", current_time - data->start_time, data->philos[i].id); 
 			data->stop = 1;
+			pthread_mutex_lock(&data->print_mutex);
+			printf("%lld %d died\n",
+				current_time - data->start_time, data->philos[i].id);
 			pthread_mutex_unlock(&data->print_mutex);
 			return (1);
 		}
@@ -51,7 +52,7 @@ static int	check_all_ate(t_data *data)
 	return (1);
 }
 
-void	*monitor_routine(void *arg)
+void	*monitor(void *arg)
 {
 	t_data	*data;
 
@@ -66,6 +67,7 @@ void	*monitor_routine(void *arg)
 			return (NULL);
 		}
 		pthread_mutex_unlock(&data->state_mutex);
-		usleep(1000);
+		usleep(500);
 	}
-};
+	return (NULL);
+}
