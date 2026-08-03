@@ -6,7 +6,7 @@
 /*   By: olshklya <olshklya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/30 17:35:34 by olshklya          #+#    #+#             */
-/*   Updated: 2026/07/30 17:36:59 by olshklya         ###   ########.fr       */
+/*   Updated: 2026/08/03 16:57:50 by olshklya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ static int	init_mutexes(t_data *data)
 
 static void	init_values(t_data *data, int i)
 {
-	
 	i = 0;
 	while (i < data->number_of_philos)
 	{
@@ -57,7 +56,8 @@ static void	init_values(t_data *data, int i)
 		data->philos[i].meals_eaten = 0;
 		data->philos[i].last_meal_time = 0;
 		data->philos[i].left_fork = &data->forks[i];
-		data->philos[i].right_fork = &data->forks[(i + 1) % data->number_of_philos];
+		data->philos[i].right_fork = &data->forks[(i + 1)
+			% data->number_of_philos];
 		data->philos[i].data = data;
 		i++;
 	}

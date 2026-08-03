@@ -6,11 +6,11 @@
 /*   By: olshklya <olshklya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/26 17:47:27 by olshklya          #+#    #+#             */
-/*   Updated: 2026/07/30 17:51:36 by olshklya         ###   ########.fr       */
+/*   Updated: 2026/08/03 17:00:22 by olshklya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "philo.h"
+#include "philo.h"
 #include <pthread.h>
 
 static int	check_death(t_data *data)
@@ -26,8 +26,8 @@ static int	check_death(t_data *data)
 		{
 			data->stop = 1;
 			pthread_mutex_lock(&data->print_mutex);
-			printf("%lld %d died\n",
-				current_time - data->start_time, data->philos[i].id);
+			printf("%lld %d died\n", current_time - data->start_time,
+				data->philos[i].id);
 			pthread_mutex_unlock(&data->print_mutex);
 			return (1);
 		}

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "philo.h"
+#include "philo.h"
 
 long long	get_time(void)
 {
@@ -24,7 +24,7 @@ long long	get_time(void)
 void	ft_sleep(long long ms, t_data *data)
 {
 	long long	start;
-	
+
 	start = get_time();
 	while ((get_time() - start) < ms)
 	{
@@ -66,7 +66,7 @@ void	print_state(t_philo *philo, char *msg)
 {
 	pthread_mutex_lock(&philo->data->print_mutex);
 	if (!is_stopped(philo->data))
-		printf("%lld %d %s\n",
-			get_time() - philo->data->start_time, philo->id, msg);
+		printf("%lld %d %s\n", get_time() - philo->data->start_time, philo->id,
+			msg);
 	pthread_mutex_unlock(&philo->data->print_mutex);
 }
