@@ -6,7 +6,7 @@
 /*   By: olshklya <olshklya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/26 12:07:00 by olshklya          #+#    #+#             */
-/*   Updated: 2026/07/30 17:43:47 by olshklya         ###   ########.fr       */
+/*   Updated: 2026/08/03 17:30:15 by olshklya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,10 @@ void	*check_one_arg(void *arg)
 
 void	print_state(t_philo *philo, char *msg)
 {
+	if (is_stopped(philo->data))
+		return ;
 	pthread_mutex_lock(&philo->data->print_mutex);
-	if (!is_stopped(philo->data))
-		printf("%lld %d %s\n", get_time() - philo->data->start_time, philo->id,
-			msg);
+	printf("%lld %d %s\n", get_time() - philo->data->start_time, philo->id,
+		msg);
 	pthread_mutex_unlock(&philo->data->print_mutex);
 }
