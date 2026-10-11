@@ -1,16 +1,27 @@
-#include <iostream>
+#ifndef PHONEBOOK_HPP
+# define PHONEBOOK_HPP
+
 #include "Contact.hpp"
 
 class PhoneBook
 {
 public:
-	void add(Contact contact);
-	void search (Contact contact);
-	void exit();
-	int get_size();
-	int get_index(Contact contact);
+	PhoneBook();
+	~PhoneBook();
+
+	bool add();
+	bool search();
 
 private:
-	int size;
-	Contact contact_array[8];
+	static const int MAX = 8;
+	int _count;
+	Contact _contacts[MAX];
+	int _next;
+
+	static bool readField(const std::string &prompt, std::string &out);
+	static std::string truncate(const std::string &s);
+	void displayList() const;
+	void displayContact(int i) const;
 };
+
+# endif
