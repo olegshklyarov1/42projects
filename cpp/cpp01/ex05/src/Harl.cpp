@@ -6,7 +6,7 @@
 /*   By: olshklya <olshklya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/15 13:34:24 by olshklya          #+#    #+#             */
-/*   Updated: 2026/10/15 14:50:19 by olshklya         ###   ########.fr       */
+/*   Updated: 2026/10/15 15:13:36 by olshklya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ void Harl::complain(std::string level)
 	for (int i = 0; i < 4; i++)
 	{
 		if (levels[i] == level)
+		{
 			(this->*functionPtrs[i])();
+			return ;
+		}
 	}
 }
