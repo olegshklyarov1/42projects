@@ -6,7 +6,7 @@
 #    By: olshklya <olshklya@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/16 16:48:46 by olshklya          #+#    #+#              #
-#    Updated: 2026/02/24 18:35:00 by olshklya         ###   ########.fr        #
+#    Updated: 2026/08/15 21:19:37 by olshklya         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ OBJS		= $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
 # Compiler and flags
 CC			= cc
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS = -g
 INCLUDES	= -I$(INC_DIR) -I$(MLX_DIR)
 
 # Libraries
