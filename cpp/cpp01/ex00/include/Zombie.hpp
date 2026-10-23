@@ -6,7 +6,7 @@
 /*   By: olshklya <olshklya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 15:38:31 by olshklya          #+#    #+#             */
-/*   Updated: 2026/10/13 16:37:20 by olshklya         ###   ########.fr       */
+/*   Updated: 2026/10/23 16:45:45 by olshklya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ class Zombie
 	
 	private:
 	
-	std::string name;
+	std::string _name;
 };
 
 Zombie* newZombie(std::string name);

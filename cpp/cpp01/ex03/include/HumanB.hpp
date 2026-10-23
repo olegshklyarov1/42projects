@@ -6,7 +6,7 @@
 /*   By: olshklya <olshklya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 17:55:15 by olshklya          #+#    #+#             */
-/*   Updated: 2026/10/13 18:27:06 by olshklya         ###   ########.fr       */
+/*   Updated: 2026/10/23 16:51:14 by olshklya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ class HumanB
 		void setWeapon(Weapon& weapon);
 	
 	private:
-		std::string name;
-		Weapon *weapon;
+		std::string _name;
+		Weapon* _weapon;
 };

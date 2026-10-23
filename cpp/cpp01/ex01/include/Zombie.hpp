@@ -6,7 +6,7 @@
 /*   By: olshklya <olshklya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 16:39:24 by olshklya          #+#    #+#             */
-/*   Updated: 2026/10/13 16:56:08 by olshklya         ###   ########.fr       */
+/*   Updated: 2026/10/23 16:49:32 by olshklya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 class Zombie
 {
 	private:
-		std::string name;
+		std::string _name;
 	public:
 		Zombie();
 		~Zombie();

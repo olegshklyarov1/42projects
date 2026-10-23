@@ -6,7 +6,7 @@
 /*   By: olshklya <olshklya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 17:45:59 by olshklya          #+#    #+#             */
-/*   Updated: 2026/10/13 18:26:05 by olshklya         ###   ########.fr       */
+/*   Updated: 2026/10/23 16:51:20 by olshklya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,5 @@ class Weapon
 		void setType(const std::string& type);
 
 	private:
-		std::string type;
+		std::string _type;
 };

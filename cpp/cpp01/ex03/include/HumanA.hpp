@@ -6,7 +6,7 @@
 /*   By: olshklya <olshklya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 17:50:44 by olshklya          #+#    #+#             */
-/*   Updated: 2026/10/13 18:27:13 by olshklya         ###   ########.fr       */
+/*   Updated: 2026/10/23 16:50:58 by olshklya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ class HumanA
 		void attack(void) const;
 	
 	private:
-		std::string name;
-		Weapon &weapon;
+		std::string _name;
+		Weapon& _weapon;
 };
