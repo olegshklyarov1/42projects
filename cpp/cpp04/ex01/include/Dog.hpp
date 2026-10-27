@@ -6,7 +6,7 @@
 /*   By: olshklya <olshklya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/26 19:26:00 by olshklya          #+#    #+#             */
-/*   Updated: 2026/10/27 16:09:53 by olshklya         ###   ########.fr       */
+/*   Updated: 2026/10/27 20:29:46 by olshklya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@ public:
 	
 	virtual void makeSound() const;
 	
-	void getIdeas(void) const;
-	void setIdea(size_t i, std::string idea);
+	Brain *getBrain() const;
+
+	std::string getIdea(size_t i) const;
+	void setIdea(size_t i, const std::string &idea);
 
 private:
 	Brain* _brain;

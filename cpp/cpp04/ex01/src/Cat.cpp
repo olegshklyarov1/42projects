@@ -6,7 +6,7 @@
 /*   By: olshklya <olshklya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/26 19:31:39 by olshklya          #+#    #+#             */
-/*   Updated: 2026/10/27 16:38:38 by olshklya         ###   ########.fr       */
+/*   Updated: 2026/10/27 20:33:51 by olshklya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,6 @@ Cat::Cat() : Animal()
 {
 	this->type = "Cat";
 	this->_brain = new Brain();
-	if (this->_brain == NULL)
-	{
-		perror("Brain allocation failed");
-		std::cout << "Exiting because of allocation error" << std::endl;
-		exit(1);
-	}
 	std::cout << "Cat default constructor called" << std::endl;
 }
 
@@ -52,6 +46,21 @@ Cat::~Cat()
 	delete (this->_brain);
 	std::cout << "Cat destructor called" << std::endl;
 }
+
+std::string Cat::getIdea(size_t i) const
+{
+	return this->_brain->getIdea(i);
+}
+
+void Cat::setIdea(size_t i, const std::string &idea)
+{
+	this->_brain->setIdea(i, idea);
+}
+
+Brain *Cat::getBrain() const
+{
+	return this->_brain;
+} 
 
 void Cat::makeSound() const
 {

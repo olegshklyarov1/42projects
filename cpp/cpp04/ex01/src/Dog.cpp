@@ -6,19 +6,19 @@
 /*   By: olshklya <olshklya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/26 19:31:39 by olshklya          #+#    #+#             */
-/*   Updated: 2026/10/27 16:45:21 by olshklya         ###   ########.fr       */
+/*   Updated: 2026/10/27 20:32:49 by olshklya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/Dog.hpp"
 
-Dog::Dog() : Animal()
+Dog::Dog() : Animal(), _brain(new Brain())
 {
 	type = "Dog";
 	std::cout << "Dog default constructor called" << std::endl;
 }
 
-Dog::Dog(const Dog &other) : Animal(other)
+Dog::Dog(const Dog &other) : Animal(other), _brain(new Brain(*other._brain))
 {
 	std::cout << "Dog copy constructor called" << std::endl;
 }
@@ -43,6 +43,21 @@ Dog::~Dog()
 	delete (this->_brain); 
 	std::cout << "Dog destructor called" << std::endl;
 }
+
+std::string Dog::getIdea(size_t i) const
+{
+	return this->_brain->getIdea(i);
+}
+
+void Dog::setIdea(size_t i, const std::string &idea)
+{
+	this->_brain->setIdea(i, idea);
+}
+
+Brain *Dog::getBrain() const
+{
+	return this->_brain;
+} 
 
 void Dog::makeSound() const
 {
