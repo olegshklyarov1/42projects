@@ -64,7 +64,7 @@ static void testStack(void)
 
 static void testReference(void)
 {
-	title("TEST 5 : reference polymorphisme");
+	title("TEST 5 : reference polymorphism");
 	Dog dog;
 	Cat cat;
 	Animal &r1 = dog;
@@ -93,7 +93,6 @@ static void testCopy(void)
 	Cat c3;
 
 	c3 = c1;
-	c1 = c1;
 	std::cout << c2.getType() << " / " << c3.getType() << std::endl;
 }
 
