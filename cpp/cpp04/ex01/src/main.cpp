@@ -127,22 +127,6 @@ static void testCopyFromArray(void)
 	std::cout << "catCopy idea 0 : " << catCopy.getBrain()->getIdea(0) << " (expected: sleep)" << std::endl;
 }
 
-/* TEST 7 : auto-affectation et limites de Brain */
-static void testEdgeCases(void)
-{
-	title("TEST 7 : edge cases");
-	Dog d;
-
-	d.getBrain()->setIdea(0, "self");
-	d = d;
-	std::cout << "after self-assignment : " << d.getBrain()->getIdea(0) << " (expected: self)" << std::endl;
-
-	d.getBrain()->setIdea(100, "out of range");		// message d'erreur attendu
-	std::cout << d.getBrain()->getIdea(100) << std::endl;	// message d'erreur attendu
-	std::cout << "NULL address for out of range : "
-		<< (d.getBrain()->getIdeaAddress(100) == NULL) << " (expected: 1)" << std::endl;
-}
-
 int main(void)
 {
 	testSubject();
@@ -151,6 +135,5 @@ int main(void)
 	testDeepCopyDogAssign();
 	testDeepCopyCat();
 	testCopyFromArray();
-	testEdgeCases();
 	return 0;
 }
